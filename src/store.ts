@@ -3,6 +3,9 @@ import { RouterState, connectRouter } from 'connected-react-router';
 import { all, fork } from 'redux-saga/effects';
 import { History } from 'history'
 import { Reducer } from 'typesafe-actions';
+import { ToastBeerState } from './Containers/FeedView/types';
+import { toastBeerReducer } from './Containers/FeedView/reducers';
+import { toastBeerSaga } from './Containers/FeedView/sagas';
 
 
 // The top-level state object.
@@ -10,7 +13,7 @@ import { Reducer } from 'typesafe-actions';
 // `connected-react-router` already injects the router state typings for us,
 // so we can ignore them here.
 export interface ApplicationState {
-  // toastBeer:toastBeerState;
+  toastBeer:ToastBeerState;
   router: RouterState<History.LocationState>
 }
 
@@ -24,7 +27,7 @@ export interface ConnectedReduxProps<A extends Action = AnyAction> {
 // the reducer acts on the corresponding ApplicationState property type.
 export const createRootReducer = (history: History) =>
   combineReducers({
-    // toastBeer: toastBeerReducer as Reducer<toastBeerState, AnyAction>,
+    toastBeer: toastBeerReducer as Reducer<ToastBeerState, AnyAction>,
     router: connectRouter(history)
   })
 
@@ -32,6 +35,6 @@ export const createRootReducer = (history: History) =>
 // "generator function", which you can read about here:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
 export function* rootSaga() {
-  // yield all([fork(toastBeerSaga)])
+  yield all([fork(toastBeerSaga)])
 
 }

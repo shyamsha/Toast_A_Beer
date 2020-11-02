@@ -13,7 +13,7 @@ export const getBeers = () => {
   return API.get(url);
 };
 
-export const randomBeers = () => {
+export const randomBeer = () => {
   const url = `${API_ENDPOINT}/beers/random`;
   return API.get(url);
 };
