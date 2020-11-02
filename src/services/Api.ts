@@ -1,5 +1,5 @@
 import config from "../config/app";
-import requestConfig from "../config/request";
+// import requestConfig from "../config/request";
 import * as API from "../utils/api-helper";
 
 const isProd: boolean = config.isProd;

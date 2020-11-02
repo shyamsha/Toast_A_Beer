@@ -61,7 +61,7 @@ export interface Ingredients {
   yeast: string;
 }
 
-export interface FeedView {
+export interface FeedViewBeer {
   id: number;
   name: string;
   tagline: string;
@@ -101,8 +101,8 @@ export enum BeerActionTypes {
 
 export interface ToastBeerState {
   readonly loading: boolean;
-  readonly beers: FeedView[] | null;
-  readonly beer: FeedView | null;
+  readonly beers: FeedViewBeer[] | null;
+  readonly beer: FeedViewBeer[] | null;
   readonly errors: {
     beers?: string;
     beer?: string;

@@ -1,9 +1,9 @@
-import { BeerActionTypes, FeedView } from "./types";
+import { BeerActionTypes, FeedViewBeer } from "./types";
 import { action } from "typesafe-actions";
 
 export const randomBeerRequest = () => 
-  action(BeerActionTypes.BEERS_REQUEST);
-export const randomBeerSuccess = (res: FeedView[]) =>
-  action(BeerActionTypes.BEERS_SUCCESS, res);
+  action(BeerActionTypes.RANDOM_BEER_REQUEST);
+export const randomBeerSuccess = (res: FeedViewBeer[]) =>
+  action(BeerActionTypes.RANDOM_BEER_SUCCESS, res);
 export const randomBeerError = (message: Error) =>
-  action(BeerActionTypes.BEERS_ERROR, message);
+  action(BeerActionTypes.RANDOM_BEER_ERROR, message);

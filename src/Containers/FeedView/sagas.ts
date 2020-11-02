@@ -1,11 +1,10 @@
 import { BeerActionTypes } from './types';
 import { randomBeerError, randomBeerSuccess } from './actions';
-import { Action } from "redux";
 import { put, call, takeLatest, all, fork } from "redux-saga/effects";
 import * as Api from "../../services/Api";
 import { unknownError } from "../../utils/api-helper";
 
-type SagaAction<T> = Action & { payload: T };
+// type SagaAction<T> = Action & { payload: T };
 
 function* randomBeer() {
   try {
@@ -27,7 +26,7 @@ function* randomBeer() {
 
 
 function* watchFetchRequest() {
-  yield takeLatest(BeerActionTypes.BEERS_REQUEST, randomBeer);
+  yield takeLatest(BeerActionTypes.RANDOM_BEER_REQUEST, randomBeer);
   
 }
 
