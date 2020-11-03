@@ -1,11 +1,13 @@
 import React, { Component, Dispatch, Fragment } from "react";
-import { List } from "antd";
+import { Button, List } from "antd";
 import { randomBeerRequest } from "./actions";
 import { FeedViewBeer } from "./types";
 import { ApplicationState } from "../../store";
 import { connect } from "react-redux";
 import FeedViewItem from "./views/FeedViewItem";
 import "../../App.css"
+import { push } from "connected-react-router";
+import { RouteEnums } from "../../navigator/RouteEnums";
 interface PropsFromState {
   loading: boolean;
   beer: FeedViewBeer[];
@@ -16,18 +18,21 @@ interface PropsFromState {
 
 interface PropsDispatchFromState {
   onRandomBeer: typeof randomBeerRequest;
+  onNavigate: typeof push;
 }
 
 type AllProps = PropsFromState & PropsDispatchFromState;
 
 interface State {
-  visible: boolean;
 }
 
 class FeedView extends Component<AllProps, State> {
   state: State = {
-    visible: false,
   };
+
+  redirect=()=>{
+    this.props.onNavigate(`/${RouteEnums.DASHBOARD}`)
+  }
 
   componentDidMount() {
     this.props.onRandomBeer();
@@ -46,7 +51,7 @@ class FeedView extends Component<AllProps, State> {
     const { beer, loading } = this.props;
     return (
       <Fragment>
-        <div style={{padding:"4rem"}}>
+        <div style={{padding:"2rem"}}>
           <List
             loading={loading}
             itemLayout="vertical"
@@ -55,6 +60,9 @@ class FeedView extends Component<AllProps, State> {
             header={<div className="App-header ">Random Beer</div>}
             renderItem={(item) => <FeedViewItem beer={item} />}
           />
+        </div>
+        <div className="button">
+          <Button type="primary" onClick={this.redirect}>Go To Dashboard</Button>
         </div>
       </Fragment>
     );
@@ -69,6 +77,7 @@ const mapStateToProps: any = ({ toastBeer }: ApplicationState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   onRandomBeer: () => dispatch(randomBeerRequest()),
+  onNavigate:(route: string, state?: {})=>dispatch(push(route,state))
 });
 
 export default connect<any>(mapStateToProps, mapDispatchToProps)(FeedView);

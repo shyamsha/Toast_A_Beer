@@ -3,7 +3,7 @@ import { beersRequest } from './actions';
 import { FeedViewBeer } from './types';
 import { ApplicationState } from "../../store";
 import { connect } from "react-redux";
-
+import "../../App.css"
 interface PropsFromState {
   loading: boolean;
   beers: FeedViewBeer[];
