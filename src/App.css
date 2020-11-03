@@ -78,7 +78,22 @@
 }
 
 .img{
-  margin: auto;
-  display: block;
+  margin: auto !important;
+  display: block !important;
   padding-top: 4px;
+}
+
+.ant-card-cover > * {
+  width: 25%;
+}
+
+tr:last-child td {
+  padding-bottom: 0;
+}
+.ant-statistic-content {
+  font-size: 20px;
+  line-height: 28px;
+}
+.content {
+  display: flex;
 }

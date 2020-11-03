@@ -3,14 +3,21 @@ import React from "react";
 import { Col, Divider, Row } from "antd";
 import Avatar from "antd/lib/avatar/avatar";
 import { FeedViewBeer } from "../../FeedView/types";
+import { RouteEnums } from "../../../navigator/RouteEnums";
 
 interface Props {
   beers: FeedViewBeer;
+  onRedirect:(route: string, state?: {})=>void;
 }
 export default function ListItems(props: Props) {
   const { beers } = props;
+
+  const redirectBeerDetails = () => {
+    props.onRedirect(`/${RouteEnums.BeerDetails}/${beers.id}`);
+  };
+
   return (
-    <div>
+    <div onClick={redirectBeerDetails}>
       <Row className="container">
         <Col span={6}>
           <div className="title">{beers.name}</div>

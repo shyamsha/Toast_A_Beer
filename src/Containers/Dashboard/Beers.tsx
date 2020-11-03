@@ -48,7 +48,6 @@ class Beers extends Component<AllProps, State> {
     const { loading, beers } = this.props;
     return (
       <div>
-        {JSON.stringify(this.state.checked)}
         <div className="list">
           <div className="switch">
             <Switch onChange={this.layoutCheck} />
@@ -61,7 +60,9 @@ class Beers extends Component<AllProps, State> {
               dataSource={beers !== null ? beers : []}
               bordered={true}
               header={<div className="App-header ">Toast A Beer</div>}
-              renderItem={(item: FeedViewBeer) => <ListItems beers={item} />}
+              renderItem={(item: FeedViewBeer) => (
+                <ListItems beers={item} onRedirect={this.props.onRedirect} />
+              )}
             />
           ) : null}
           {!this.state.checked ? (
@@ -70,7 +71,9 @@ class Beers extends Component<AllProps, State> {
               loading={loading}
               dataSource={beers !== null ? beers : []}
               header={<div className="App-header ">Toast A Beer</div>}
-              renderItem={(item: FeedViewBeer) => <GridItems beers={item} />}
+              renderItem={(item: FeedViewBeer) => (
+                <GridItems beers={item} onRedirect={this.props.onRedirect} />
+              )}
             />
           ) : null}
         </div>
@@ -88,7 +91,7 @@ const mapStateToProps: any = ({ toastBeers }: ApplicationState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   onBeers: () => dispatch(beersRequest()),
-  onBeer: () => dispatch(beerRequest()),
+  onBeer: (params: { id: number }) => dispatch(beerRequest(params)),
   onRedirect: (route: string, state?: {}) => dispatch(push(route, state)),
 });
 

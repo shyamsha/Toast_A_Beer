@@ -4,8 +4,6 @@ import { put, call, takeLatest, all, fork } from "redux-saga/effects";
 import * as Api from "../../services/Api";
 import { unknownError } from "../../utils/api-helper";
 
-// type SagaAction<T> = Action & { payload: T };
-
 function* randomBeer() {
   try {
     const res = yield call(Api.randomBeer);
