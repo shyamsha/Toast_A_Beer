@@ -10,23 +10,30 @@ interface Props {
 export default function FeedViewItem(props: Props) {
   const { beer } = props;
   const [like, setLike] = useState(0);
+  // const [mesg, setMesg] = useState("");
 
-  const IconText = ({ icon, text }: { icon: any; text: string }) => (
-    <Space>
-      {React.createElement(icon)}
-      {text}
-    </Space>
-  );
+  const beerLikes = () => {
+    if (like === 0) {
+      setLike(1);
+    } else if (like === 1) {
+      setLike(0);
+    }
+  };
+  const beerMessage = () => {
 
-  const beerLikes=()=>{}
+  };
 
   return (
     <div>
       <List.Item
         key={beer.id}
         actions={[
-          <IconText icon={LikeOutlined} text="156" key="list-like" />,
-          <IconText icon={MessageOutlined} text="2" key="list-message" />,
+          <Space>
+            <LikeOutlined onClick={beerLikes} />
+            {like}
+            <MessageOutlined onClick={beerMessage}/>
+            {2}
+          </Space>,
         ]}
         extra={<img width={50} alt="logo" src={beer.image_url} />}
       >
