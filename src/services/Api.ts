@@ -22,3 +22,8 @@ export const getSingleBeer = (params: { id: number }) => {
   const url = `${API_ENDPOINT}/beers/${params.id}`;
   return API.get(url);
 };
+
+export const pagination =(params:{page:number,size:number})=>{
+  const url = `${API_ENDPOINT}/beers?page=${params.page}&per_page=10`
+  return API.get(url)
+}

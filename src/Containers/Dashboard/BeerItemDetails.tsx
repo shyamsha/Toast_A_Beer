@@ -65,13 +65,13 @@ class BeerItemDetails extends Component<AllProps, State> {
       {item.ingredients.malt.map((ele) => (
         <Paragraph>{ele.name} ,</Paragraph>
       ))}
-      <div className="title">head</div>
+      <div className="title">Description</div>
       <Paragraph>{item.description}</Paragraph>
       <div className="title">Food Pairing</div>
       {item.food_pairing.map((ele) => (
         <Paragraph>{ele}</Paragraph>
       ))}
-      <div>Brewers Tips</div>
+      <div className="title">Brewers Tips</div>
       <Paragraph>{item.brewers_tips}</Paragraph>
     </div>
   );
@@ -91,16 +91,16 @@ class BeerItemDetails extends Component<AllProps, State> {
 
   render() {
     const { beer } = this.props;
-    const item = beer[0];
+    // const item = beer[0];
     return (
       <div>
         <PageHeader
           className="site-page-header-responsive"
           onBack={() => window.history.back()}
-          title={item.name}
-          subTitle={item.tagline}
+          title={beer[0].name}
+          subTitle={beer[0].tagline}
         >
-          <this.Content>{this.renderContent(item)}</this.Content>
+          <this.Content>{this.renderContent(beer[0])}</this.Content>
         </PageHeader>
       </div>
     );
