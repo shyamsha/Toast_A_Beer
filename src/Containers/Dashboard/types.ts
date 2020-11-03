@@ -98,7 +98,9 @@ export enum BeersActionTypes {
 export interface ToastBeersState {
   readonly loading: boolean;
   readonly beers: FeedViewBeer[] | null;
+  readonly beer:FeedViewBeer | null;
   readonly errors: {
     beers?: string;
+    beer?:string;
   };
 }

@@ -1,5 +1,5 @@
 import { BeersActionTypes } from './types';
-import { beersError, beersSuccess } from './actions';
+import { beerError, beersError, beersSuccess, beerSuccess } from './actions';
 import { put, call, takeLatest, all, fork } from "redux-saga/effects";
 import * as Api from "../../services/Api";
 import { unknownError } from "../../utils/api-helper";
@@ -23,8 +23,26 @@ function* beers() {
   }
 }
 
+function* beer() {
+  try {
+    const res = yield call(Api.getBeers);
+    if (res.error) {
+      yield put(beerError(res.error));
+    } else {
+      yield put(beerSuccess(res.data));
+    }
+  } catch (err) {
+    if (err instanceof Error) {
+      yield put(beerError(err));
+    } else {
+      yield put(beerError(unknownError("An unknown error occurred")));
+    }
+  }
+}
+
 function* watchFetchRequest() {
   yield takeLatest(BeersActionTypes.BEERS_REQUEST, beers);
+  yield takeLatest(BeersActionTypes.GET_BEER_REQUEST,beer)
 }
 
 export function* toastBeersSaga() {

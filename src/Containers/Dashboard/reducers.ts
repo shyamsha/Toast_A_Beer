@@ -4,8 +4,10 @@ import { Reducer } from "redux";
 const initialState: ToastBeersState = {
   loading: false,
   beers: null,
+  beer:null,
   errors: {
     beers: undefined,
+    beer:undefined
   },
 };
 
@@ -30,6 +32,20 @@ const reducer: Reducer<ToastBeersState, A> = (
         loading: false,
         errors: { ...state.errors, beers: action.payload },
       };
+      case BeersActionTypes.GET_BEER_REQUEST:
+        return {
+          ...state,
+          loading: true,
+          errors: { ...state.errors, beer: undefined },
+        };
+      case BeersActionTypes.GET_BEER_SUCCESS:
+        return { ...state, loading: false, beer: action.payload };
+      case BeersActionTypes.GET_BEER_ERROR:
+        return {
+          ...state,
+          loading: false,
+          errors: { ...state.errors, beer: action.payload },
+        };
 
     default:
       return state;

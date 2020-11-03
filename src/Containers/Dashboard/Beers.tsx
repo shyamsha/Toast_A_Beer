@@ -1,5 +1,5 @@
 import React, { Component, Dispatch } from "react";
-import { beersRequest } from "./actions";
+import { beerRequest, beersRequest } from "./actions";
 import { FeedViewBeer } from "./types";
 import { ApplicationState } from "../../store";
 import { connect } from "react-redux";
@@ -8,16 +8,21 @@ import { List, Switch } from "antd";
 import "../../App.css";
 import ListItems from "./views/ListItems";
 import GridItems from "./views/GridItems";
+import { push } from "connected-react-router";
 interface PropsFromState {
   loading: boolean;
   beers: FeedViewBeer[];
+  beer: FeedViewBeer;
   error: {
     beers: string;
+    beer: string;
   };
 }
 
 interface PropsDispatchFromState {
   onBeers: typeof beersRequest;
+  onBeer: typeof beerRequest;
+  onRedirect: typeof push;
 }
 
 type AllProps = PropsFromState & PropsDispatchFromState;
@@ -77,11 +82,14 @@ class Beers extends Component<AllProps, State> {
 const mapStateToProps: any = ({ toastBeers }: ApplicationState) => ({
   loading: toastBeers.loading,
   beers: toastBeers.beers,
+  beer: toastBeers.beer,
   error: toastBeers.errors,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   onBeers: () => dispatch(beersRequest()),
+  onBeer: () => dispatch(beerRequest()),
+  onRedirect: (route: string, state?: {}) => dispatch(push(route, state)),
 });
 
 export default connect<any>(mapStateToProps, mapDispatchToProps)(Beers);
