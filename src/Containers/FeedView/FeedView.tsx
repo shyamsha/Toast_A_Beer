@@ -51,7 +51,7 @@ class FeedView extends Component<AllProps, State> {
     const { beer, loading } = this.props;
     return (
       <Fragment>
-        <div style={{padding:"2rem"}}>
+        <div className="list">
           <List
             loading={loading}
             itemLayout="vertical"

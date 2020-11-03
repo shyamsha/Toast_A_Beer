@@ -1,4 +1,4 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 .App {
   text-align: center;
 }
@@ -20,8 +20,8 @@
   color: white;
   padding: 0 !important;
 }
-.ant-list-header{
-  padding:0 !important;
+.ant-list-header {
+  padding: 0 !important;
 }
 .App-link {
   color: #61dafb;
@@ -36,8 +36,49 @@
   }
 }
 
-.button{
+.button {
   display: flex;
   justify-content: flex-end;
   padding: 0rem 2rem;
+}
+
+.list {
+  padding: 1rem;
+}
+
+.title {
+  color: #1c2d41;
+  font-family: "OpenSans-Regular";
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.subtitle {
+  color: #848ca3;
+  font-family: "OpenSans-Light";
+  font-size: 0.75rem;
+  font-weight: 400;
+  display: flex;
+}
+
+.container {
+  padding: 0.5rem 0.5rem;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 0.25rem;
+}
+
+.switch{
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 0.5rem;
+}
+
+.img{
+  margin: auto;
+  display: block;
+  padding-top: 4px;
 }

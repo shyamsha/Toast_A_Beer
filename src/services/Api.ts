@@ -9,7 +9,7 @@ const API_ENDPOINT = isProd
   : config.staging.api_endpoint;
 
 export const getBeers = () => {
-  const url = `${API_ENDPOINT}/beers`;
+  const url = `${API_ENDPOINT}/beers/?per_page=10`;
   return API.get(url);
 };
 
