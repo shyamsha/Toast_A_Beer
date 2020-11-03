@@ -85,16 +85,20 @@ export interface FeedViewBeer {
   contributed_by: string;
 }
 
-export enum BeerActionTypes {
-  RANDOM_BEER_REQUEST = "@@beer/feed/RANDOM_BEER_REQUEST",
-  RANDOM_BEER_SUCCESS = "@@beer/feed/RANDOM_BEER_SUCCESS",
-  RANDOM_BEER_ERROR = "@@beer/feed/RANDOM_BEER_ERROR",
+export enum BeersActionTypes {
+  BEERS_REQUEST = "@@beers/feed/BEERS_REQUEST",
+  BEERS_SUCCESS = "@@beers/feed/BEERS_SUCCESS",
+  BEERS_ERROR = "@@beers/feed/BEERS_ERROR",
+
+  GET_BEER_REQUEST = "@@beer/feed/GET_BEER_REQUEST",
+  GET_BEER_SUCCESS = "@@beer/feed/GET_BEER_SUCCESS",
+  GET_BEER_ERROR = "@@beer/feed/GET_BEER_ERROR",
 }
 
-export interface ToastBeerState {
+export interface ToastBeersState {
   readonly loading: boolean;
-  readonly beer: FeedViewBeer[] | null;
+  readonly beers: FeedViewBeer[] | null;
   readonly errors: {
-    beer?: string;
+    beers?: string;
   };
 }

@@ -27,7 +27,6 @@ function* randomBeer() {
 
 function* watchFetchRequest() {
   yield takeLatest(BeerActionTypes.RANDOM_BEER_REQUEST, randomBeer);
-  
 }
 
 export function* toastBeerSaga() {

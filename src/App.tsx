@@ -7,10 +7,12 @@ import AppNavigator from './navigator/AppNavigator';
 import { ApplicationState } from './store';
 import configureStore from './configureStore';
 import { toastBeerInitialState } from './Containers/FeedView/reducers';
+import { toastBeersInitialState } from './Containers/Dashboard/reducers';
 
 const history = createBrowserHistory();
 
 const initialState: ApplicationState = {
+  toastBeers:toastBeersInitialState,
   toastBeer: toastBeerInitialState,
   router: { location: history.location, action: "PUSH" },
 };

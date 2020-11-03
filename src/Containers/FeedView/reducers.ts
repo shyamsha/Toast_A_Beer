@@ -3,7 +3,6 @@ import { Reducer } from "redux";
 
 const initialState: ToastBeerState = {
   loading: false,
-  beers: null,
   beer: null,
   errors: {
     beer: undefined,
@@ -31,7 +30,6 @@ const reducer: Reducer<ToastBeerState, A> = (
         loading: false,
         errors: { ...state.errors, beer: action.payload },
       };
-
     
     default:
       return state;

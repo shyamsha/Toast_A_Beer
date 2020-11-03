@@ -32,14 +32,14 @@ class FeedView extends Component<AllProps, State> {
   componentDidMount() {
     this.props.onRandomBeer();
     // @ts-ignore
-    this.interval = setInterval(() => {
-      this.props.onRandomBeer()
-    }, 5000);
+    // this.interval = setInterval(() => {
+    //   this.props.onRandomBeer()
+    // }, 5000);
   }
 
   componentWillUnmount() {
     // @ts-ignore
-    clearInterval(this.interval);
+    // clearInterval(this.interval);
   }
 
   render() {

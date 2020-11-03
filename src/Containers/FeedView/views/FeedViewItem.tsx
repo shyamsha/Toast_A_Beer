@@ -17,6 +17,9 @@ export default function FeedViewItem(props: Props) {
       {text}
     </Space>
   );
+
+  const beerLikes=()=>{}
+
   return (
     <div>
       <List.Item
