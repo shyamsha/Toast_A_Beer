@@ -101,6 +101,10 @@ export enum BeersActionTypes {
   GET_FILTER_REQUEST = "@@beer/feed/GET_FILTER_REQUEST",
   GET_FILTER_SUCCESS = "@@beer/feed/GET_FILTER_SUCCESS",
   GET_FILTER_ERROR = "@@beer/feed/GET_FILTER_ERROR",
+
+  GET_SEARCH_REQUEST = "@@beer/feed/GET_SEARCH_REQUEST",
+  GET_SEARCH_SUCCESS = "@@beer/feed/GET_SEARCH_SUCCESS",
+  GET_SEARCH_ERROR = "@@beer/feed/GET_SEARCH_ERROR",
 }
 
 export interface ToastBeersState {

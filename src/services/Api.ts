@@ -32,3 +32,8 @@ export const filter =(params:{malt:string})=>{
   const url=`${API_ENDPOINT}/beers?malt=${params.malt}`;
   return API.get(url)
 }
+
+export const search =(params:{beer_name:string})=>{
+  const url=`${API_ENDPOINT}/beers?malt=${params.beer_name}`;
+  return API.get(url)
+}

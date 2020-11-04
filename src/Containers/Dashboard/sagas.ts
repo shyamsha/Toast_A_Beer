@@ -1,5 +1,5 @@
 import { BeersActionTypes } from './types';
-import { beerError, beersError, beersSuccess, beerSuccess, paginationError, paginationSuccess, filterError, filterSuccess } from './actions';
+import { beerError, beersError, beersSuccess, beerSuccess, paginationError, paginationSuccess, filterError, filterSuccess, searchError, SearchSuccess } from './actions';
 import { put, call, takeLatest, all, fork } from "redux-saga/effects";
 import * as Api from "../../services/Api";
 import { unknownError } from "../../utils/api-helper";
@@ -75,11 +75,29 @@ function* filter({ payload: params }: SagaAction<{ malt: string }>) {
   }
 }
 
+function* search({ payload: params }: SagaAction<{ beer_name: string }>) {
+  try {
+    const res = yield call(Api.search,params);
+    if (res.error) {
+      yield put(searchError(res.error));
+    } else {
+      yield put(SearchSuccess(res.data));
+    }
+  } catch (err) {
+    if (err instanceof Error) {
+      yield put(searchError(err));
+    } else {
+      yield put(searchError(unknownError("An unknown error occurred")));
+    }
+  }
+}
+
 function* watchFetchRequest() {
   yield takeLatest(BeersActionTypes.BEERS_REQUEST, beers);
   yield takeLatest(BeersActionTypes.GET_BEER_REQUEST,beer);
   yield takeLatest(BeersActionTypes.GET_PAGINATION_REQUEST,pagination)
   yield takeLatest(BeersActionTypes.GET_FILTER_REQUEST,filter)
+  yield takeLatest(BeersActionTypes.GET_SEARCH_REQUEST,search)
 }
 
 export function* toastBeersSaga() {

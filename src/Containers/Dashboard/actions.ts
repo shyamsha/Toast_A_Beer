@@ -28,3 +28,10 @@ export const filterSuccess=(res: FeedViewBeer[])=>
 action(BeersActionTypes.GET_FILTER_SUCCESS,res)
 export const filterError=(message:Error)=>
 action(BeersActionTypes.GET_FILTER_ERROR,message)
+
+export const searchRequest=(params:{beer_name:string})=>
+action(BeersActionTypes.GET_SEARCH_REQUEST,params)
+export const SearchSuccess=(res: FeedViewBeer[])=>
+action(BeersActionTypes.GET_SEARCH_SUCCESS,res)
+export const searchError=(message:Error)=>
+action(BeersActionTypes.GET_SEARCH_ERROR,message)

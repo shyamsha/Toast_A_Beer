@@ -74,6 +74,20 @@ const reducer: Reducer<ToastBeersState, A> = (
         loading: false,
         errors: { ...state.errors, beers: action.payload },
       };
+      case BeersActionTypes.GET_SEARCH_REQUEST:
+        return {
+          ...state,
+          loading: true,
+          errors: { ...state.errors, beers: undefined },
+        };
+      case BeersActionTypes.GET_SEARCH_SUCCESS:
+        return { ...state, loading: false, beers: action.payload };
+      case BeersActionTypes.GET_SEARCH_ERROR:
+        return {
+          ...state,
+          loading: false,
+          errors: { ...state.errors, beers: action.payload },
+        };
     default:
       return state;
   }
