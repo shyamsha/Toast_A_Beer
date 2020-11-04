@@ -1,5 +1,5 @@
 import { BeersActionTypes } from './types';
-import { beerError, beersError, beersSuccess, beerSuccess } from './actions';
+import { beerError, beersError, beersSuccess, beerSuccess, paginationError, paginationSuccess, filterError, filterSuccess } from './actions';
 import { put, call, takeLatest, all, fork } from "redux-saga/effects";
 import * as Api from "../../services/Api";
 import { unknownError } from "../../utils/api-helper";
@@ -41,9 +41,45 @@ function* beer({ payload: params }: SagaAction<{ id: number }>) {
   }
 }
 
+function* pagination({ payload: params }: SagaAction<{ page: number }>) {
+  try {
+    const res = yield call(Api.pagination,params);
+    if (res.error) {
+      yield put(paginationError(res.error));
+    } else {
+      yield put(paginationSuccess(res.data));
+    }
+  } catch (err) {
+    if (err instanceof Error) {
+      yield put(paginationError(err));
+    } else {
+      yield put(paginationError(unknownError("An unknown error occurred")));
+    }
+  }
+}
+
+function* filter({ payload: params }: SagaAction<{ malt: string }>) {
+  try {
+    const res = yield call(Api.filter,params);
+    if (res.error) {
+      yield put(filterError(res.error));
+    } else {
+      yield put(filterSuccess(res.data));
+    }
+  } catch (err) {
+    if (err instanceof Error) {
+      yield put(filterError(err));
+    } else {
+      yield put(filterError(unknownError("An unknown error occurred")));
+    }
+  }
+}
+
 function* watchFetchRequest() {
   yield takeLatest(BeersActionTypes.BEERS_REQUEST, beers);
-  yield takeLatest(BeersActionTypes.GET_BEER_REQUEST,beer)
+  yield takeLatest(BeersActionTypes.GET_BEER_REQUEST,beer);
+  yield takeLatest(BeersActionTypes.GET_PAGINATION_REQUEST,pagination)
+  yield takeLatest(BeersActionTypes.GET_FILTER_REQUEST,filter)
 }
 
 export function* toastBeersSaga() {

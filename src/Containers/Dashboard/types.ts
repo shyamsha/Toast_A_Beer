@@ -93,6 +93,14 @@ export enum BeersActionTypes {
   GET_BEER_REQUEST = "@@beer/feed/GET_BEER_REQUEST",
   GET_BEER_SUCCESS = "@@beer/feed/GET_BEER_SUCCESS",
   GET_BEER_ERROR = "@@beer/feed/GET_BEER_ERROR",
+
+  GET_PAGINATION_REQUEST = "@@beer/feed/GET_PAGINATION_REQUEST",
+  GET_PAGINATION_SUCCESS = "@@beer/feed/GET_PAGINATION_SUCCESS",
+  GET_PAGINATION_ERROR = "@@beer/feed/GET_PAGINATION_ERROR",
+
+  GET_FILTER_REQUEST = "@@beer/feed/GET_FILTER_REQUEST",
+  GET_FILTER_SUCCESS = "@@beer/feed/GET_FILTER_SUCCESS",
+  GET_FILTER_ERROR = "@@beer/feed/GET_FILTER_ERROR",
 }
 
 export interface ToastBeersState {

@@ -14,3 +14,17 @@ export const beerSuccess = (res: FeedViewBeer) =>
 action(BeersActionTypes.GET_BEER_SUCCESS, res);
 export const beerError = (message: Error) =>
 action(BeersActionTypes.GET_BEER_ERROR, message);
+
+export const paginationRequest=(params:{page:number})=>
+action(BeersActionTypes.GET_PAGINATION_REQUEST,params)
+export const paginationSuccess=(res: FeedViewBeer[])=>
+action(BeersActionTypes.GET_PAGINATION_SUCCESS,res)
+export const paginationError=(message:Error)=>
+action(BeersActionTypes.GET_PAGINATION_ERROR,message)
+
+export const filterRequest=(params:{malt:string})=>
+action(BeersActionTypes.GET_FILTER_REQUEST,params)
+export const filterSuccess=(res: FeedViewBeer[])=>
+action(BeersActionTypes.GET_FILTER_SUCCESS,res)
+export const filterError=(message:Error)=>
+action(BeersActionTypes.GET_FILTER_ERROR,message)

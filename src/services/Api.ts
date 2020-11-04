@@ -23,7 +23,12 @@ export const getSingleBeer = (params: { id: number }) => {
   return API.get(url);
 };
 
-export const pagination =(params:{page:number,size:number})=>{
-  const url = `${API_ENDPOINT}/beers?page=${params.page}&per_page=10`
+export const pagination =(params:{page:number})=>{
+  const url = `${API_ENDPOINT}/beers?page=${params.page}&per_page=10`;
+  return API.get(url)
+}
+
+export const filter =(params:{malt:string})=>{
+  const url=`${API_ENDPOINT}/beers?malt=${params.malt}`;
   return API.get(url)
 }
