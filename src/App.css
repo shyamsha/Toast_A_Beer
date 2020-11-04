@@ -71,13 +71,13 @@
   border-radius: 0.25rem;
 }
 
-.switch{
+.switch {
   display: flex;
   justify-content: flex-end;
   padding-bottom: 0.5rem;
 }
 
-.img{
+.img {
   margin: auto !important;
   display: block !important;
   padding-top: 4px;
@@ -96,4 +96,21 @@ tr:last-child td {
 }
 .content {
   display: flex;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.items{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.enditems{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
