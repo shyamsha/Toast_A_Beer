@@ -1,7 +1,7 @@
 import React, { Component, Dispatch, ReactNode } from "react";
 import { connect } from "react-redux";
 import { ApplicationState } from "../../store";
-import { beerRequest, } from "./actions";
+import { beerRequest } from "./actions";
 import { FeedViewBeer } from "./types";
 import "../../App.css";
 import { PageHeader, Descriptions, Typography } from "antd";
@@ -30,12 +30,10 @@ interface PropsDispatchFromState {
 
 type AllProps = PropsFromState & PropsDispatchFromState;
 
-interface State {
-}
+interface State {}
 
 class BeerItemDetails extends Component<AllProps, State> {
-  state: State = {
-  };
+  state: State = {};
 
   renderContent = (item: FeedViewBeer) => (
     <div>
@@ -95,14 +93,16 @@ class BeerItemDetails extends Component<AllProps, State> {
     const { beer } = this.props;
     return (
       <div>
-        <PageHeader
-          className="site-page-header-responsive"
-          onBack={() => window.history.back()}
-          title={beer[0].name}
-          subTitle={beer[0].tagline}
-        >
-          <this.Content>{this.renderContent(beer[0])}</this.Content>
-        </PageHeader>
+        {beer !== null ? (
+          <PageHeader
+            className="site-page-header-responsive"
+            onBack={() => window.history.back()}
+            title={beer[0].name}
+            subTitle={beer[0].tagline}
+          >
+            <this.Content>{this.renderContent(beer[0])}</this.Content>
+          </PageHeader>
+        ) : null}
       </div>
     );
   }
