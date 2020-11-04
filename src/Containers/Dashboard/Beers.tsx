@@ -36,7 +36,7 @@ interface PropsDispatchFromState {
   onRedirect: typeof push;
   onPagination: typeof paginationRequest;
   onFilter: typeof filterRequest;
-  onSearch:typeof searchRequest;
+  onSearch: typeof searchRequest;
 }
 
 type AllProps = PropsFromState & PropsDispatchFromState;
@@ -75,10 +75,10 @@ class Beers extends Component<AllProps, State> {
 
   handleChange = (value: string) => {
     this.setState({ filterValue: value }, () => {
-      if (this.state.filterValue !== "") {
+      if (this.state.filterValue !== "" && this.state.filterValue !== "None") {
         this.props.onFilter({ malt: this.state.filterValue });
       }
-      if (this.state.filterValue !== "" && this.state.filterValue === "None") {
+      if (this.state.filterValue === "None") {
         this.props.onBeers();
       }
     });
@@ -87,10 +87,10 @@ class Beers extends Component<AllProps, State> {
   onSearchValue = (value: string) => {
     this.setState({ searchValue: value }, () => {
       if (this.state.searchValue !== "") {
-        this.props.onSearch({beer_name:this.state.searchValue})
+        this.props.onSearch({ beer_name: this.state.searchValue });
       }
       if (this.state.searchValue === "") {
-        this.props.onBeers()
+        this.props.onBeers();
       }
     });
   };
@@ -198,7 +198,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   onPagination: (params: { page: number }) =>
     dispatch(paginationRequest(params)),
   onFilter: (params: { malt: string }) => dispatch(filterRequest(params)),
-  onSearch:(params: { beer_name: string })=>dispatch(searchRequest(params))
+  onSearch: (params: { beer_name: string }) => dispatch(searchRequest(params)),
 });
 
 export default connect<any>(mapStateToProps, mapDispatchToProps)(Beers);
