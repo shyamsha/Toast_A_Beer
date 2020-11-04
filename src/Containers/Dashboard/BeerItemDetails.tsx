@@ -95,14 +95,14 @@ class BeerItemDetails extends Component<AllProps, State> {
     const { beer } = this.props;
     return (
       <div>
-        {/* <PageHeader
+        <PageHeader
           className="site-page-header-responsive"
           onBack={() => window.history.back()}
           title={beer[0].name}
           subTitle={beer[0].tagline}
         >
           <this.Content>{this.renderContent(beer[0])}</this.Content>
-        </PageHeader> */}
+        </PageHeader>
       </div>
     );
   }
